@@ -1,10 +1,3 @@
-/*
-Takes an Array and callback of signature item => {} and 
-creates a new Array with the return value of each called callback.
-Skips any holes in the Array, and mapped Array should have hole in same spot. 
-The mapped Array should have the same .length value as the original Array.
-Returns the "mapped" new array.
-*/
 
 const newMap = (arr, callback) => {
     const newArr = [...arr];
@@ -22,8 +15,20 @@ const newMap = (arr, callback) => {
 
 
 const newFilter = (arr, callback) => {
-    
+    const newArr = [];
+    let newArrIndex = 0;
+    let index = 0;
+
+    while (index < arr.length){
+        if (arr.hasOwnProperty(index) && callback(arr[index])){
+            newArr[newArrIndex] = arr[index]
+            newArrIndex++
+        }
+        index++;
+    }
+    return newArr
 }
+
 const newFindIndex = (arr, callback) => {
 
 }
@@ -39,4 +44,5 @@ const newForEach = (arr, callback) => {
 
 
 
-module.exports = newMap
+module.exports = {newMap, newFilter}
+
