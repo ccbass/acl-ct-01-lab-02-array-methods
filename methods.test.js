@@ -78,6 +78,23 @@ describe('It correctly implements array methods with using built-ins', () => {
 
         expect(every).toEqual(false);
     });
+    
+    it('FOREACH: Checks # of callbacks and function calling', () => {
+        const mockedFunc = jest.fn((item, index) => item + 2)
+
+        const forEach = newF.newForEach([4, 6, , 7, 4], mockedFunc);
+
+        expect(mockedFunc).toHaveBeenCalledTimes(4)
+        expect(mockedFunc).toHaveBeenCalledWith(6)
+
+        expect(mockedFunc.mock.calls.length).toEqual(4);
+        
+        expect(mockedFunc.mock.calls[0][0]).toEqual(4);
+        expect(mockedFunc.mock.results[0].value).toEqual(6);
+
+        expect(mockedFunc.mock.calls[2][0]).toEqual(7);
+        expect(mockedFunc.mock.results[2].value).toEqual(9);
+    });
 
 
   });

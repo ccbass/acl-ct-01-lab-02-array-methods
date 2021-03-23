@@ -65,9 +65,22 @@ const newEvery = (arr, callback) => {
     return true
 }
 
-const newForEach = (arr, callback) => {}
+const newForEach = (arr, callback) => {
+    for (let x = 0; x < arr.length; x++){
+        if (arr.hasOwnProperty(x)){
+            callback(arr[x])
+        }
+    }
+}
 
 
 
-module.exports = {newMap, newFilter, newFindIndex, newReduce, newEvery}
+module.exports = {
+    newMap, 
+    newFilter, 
+    newFindIndex, 
+    newReduce, 
+    newEvery, 
+    newForEach
+}
 
