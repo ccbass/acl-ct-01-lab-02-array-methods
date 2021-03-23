@@ -32,10 +32,15 @@ const newFilter = (arr, callback) => {
 
 const newFindIndex = (arr, callback) => {
     let index = 0;
-    while (!arr.hasOwnProperty(index) || callback(arr[index]) !== true){
-        index++
+    for (let x = 0; x < arr.length; x++){
+        if (arr.hasOwnProperty(x)) {
+            if (callback(arr[x])) {
+                return x
+            }
+        }
     }
-    return index
+    
+    return -1
 }
 
 
@@ -70,7 +75,7 @@ const newForEach = (arr, callback) => {
         if (arr.hasOwnProperty(x)){
             callback(arr[x])
         }
-    }
+    }    
 }
 
 

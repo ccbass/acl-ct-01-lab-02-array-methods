@@ -3,9 +3,9 @@ const newF = require("./methods");
 
 describe('It correctly implements array methods with using built-ins', () => {
     it('MAP: Returns [2, 4, , 8] with n => n * 2 ', () => {
-        const mapped = newF.newMap([1, 2, , 4], n => n * 2);
+        const mapped = newF.newMap([1, undefined, 2, , 4], n => n * 2);
   
-      expect(mapped).toEqual([2, 4, , 8]);
+      expect(mapped).toEqual([2, NaN, 4, , 8]);
     });
 
     it('FILTER: Returns [2, 1, 4, , 5, 8] with evens only', () => {
@@ -14,10 +14,16 @@ describe('It correctly implements array methods with using built-ins', () => {
       expect(filtered).toEqual([2, 4, 8]);
     });
 
-    it('FINDINDEX: Returns 3 looking for first odd', () => {
+    it('FINDINDEX: Returns index 3 looking for first odd', () => {
         const index = newF.newFindIndex([2, , , 1, 5, , 8], n => n % 2 !== 0);
 
-    expect(index).toEqual(3);
+        expect(index).toEqual(3);
+    });
+
+    it('FINDINDEX: Returns -1 if none pass', () => {
+        const index = newF.newFindIndex([2, 4, 6, 8], n => n % 2 !== 0);
+
+        expect(index).toEqual(-1);
     });
 
     it('REDUCE: Returns 12, sum a+b reduce', () => {
@@ -95,7 +101,6 @@ describe('It correctly implements array methods with using built-ins', () => {
         expect(mockedFunc.mock.calls[2][0]).toEqual(7);
         expect(mockedFunc.mock.results[2].value).toEqual(9);
     });
-
 
   });
   
