@@ -53,10 +53,21 @@ const newReduce = (arr, callback, accVal) => {
     return acc
 }
 
-const newEvery = (arr, callback) => {}
+
+const newEvery = (arr, callback) => {
+    for (let x = 0; x < arr.length; x++){
+        if (arr.hasOwnProperty(x)){
+            if (!callback(arr[x])){
+                return false
+            }
+        }
+    }
+    return true
+}
+
 const newForEach = (arr, callback) => {}
 
 
 
-module.exports = {newMap, newFilter, newFindIndex, newReduce}
+module.exports = {newMap, newFilter, newFindIndex, newReduce, newEvery}
 

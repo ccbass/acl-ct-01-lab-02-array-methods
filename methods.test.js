@@ -67,6 +67,17 @@ describe('It correctly implements array methods with using built-ins', () => {
         expect(reduced).toEqual({ '4': 2, '5': 5, '6': 7, '7': 3, '8': 1, '9': 2 });
     });
 
+    it('EVERY: Returns true when all values are even', () => {
+        const every = newF.newEvery([2, 4, ,6, 8], n => n % 2 === 0);
+
+        expect(every).toEqual(true);
+    });
+
+    it('EVERY: Returns false if not all values are even', () => {
+        const every = newF.newEvery([2, , 4, 5, 6, 8], n => n % 2 === 0);
+
+        expect(every).toEqual(false);
+    });
 
 
   });
