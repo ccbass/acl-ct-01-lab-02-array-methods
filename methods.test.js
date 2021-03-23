@@ -14,6 +14,13 @@ describe('It correctly implements array methods with using built-ins', () => {
       expect(filtered).toEqual([2, 4, 8]);
     });
 
+    it('FINDINDEX: Returns 3 looking for first odd', () => {
+    const index = newF.newFindIndex([2, , , 1, 5, , 8], n => n % 2 !== 0);
+
+    expect(index).toEqual(3);
+    });
+
+
 
   });
   

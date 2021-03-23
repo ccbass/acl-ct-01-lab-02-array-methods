@@ -29,9 +29,15 @@ const newFilter = (arr, callback) => {
     return newArr
 }
 
-const newFindIndex = (arr, callback) => {
 
+const newFindIndex = (arr, callback) => {
+    let index = 0;
+    while (!arr.hasOwnProperty(index) || callback(arr[index]) !== true){
+        index++
+    }
+    return index
 }
+
 const newReduce = (arr, callback) => {
 
 }
@@ -44,5 +50,5 @@ const newForEach = (arr, callback) => {
 
 
 
-module.exports = {newMap, newFilter}
+module.exports = {newMap, newFilter, newFindIndex}
 
