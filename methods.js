@@ -38,17 +38,25 @@ const newFindIndex = (arr, callback) => {
     return index
 }
 
-const newReduce = (arr, callback) => {
 
+const newReduce = (arr, callback, accVal) => {
+    let acc = !accVal ? arr[0] : accVal;
+    let item = !accVal? arr[1] : arr[0];
+    let startindex = !accVal ? 1 : 0
+
+    for (let x = startindex; x < arr.length; x++){
+        if (arr.hasOwnProperty(x)){
+            acc = callback(acc, arr[x])
+        }
+    }
+
+    return acc
 }
-const newEvery = (arr, callback) => {
 
-}
-const newForEach = (arr, callback) => {
-
-}
+const newEvery = (arr, callback) => {}
+const newForEach = (arr, callback) => {}
 
 
 
-module.exports = {newMap, newFilter, newFindIndex}
+module.exports = {newMap, newFilter, newFindIndex, newReduce}
 
