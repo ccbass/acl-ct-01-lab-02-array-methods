@@ -100,7 +100,7 @@ describe('It correctly implements array methods with using built-ins', () => {
         expect(mockedFunc.mock.results[2].value).toEqual(9);
     });
 
-    it('Correctly accepts the Index parameter in callbacks, except REDUCE', () => {
+    it('Correctly accepts the Index parameter in callbacks', () => {
         const mockedFunc = jest.fn( (n, index) => n * 2)
         const mockedReduceFunc = jest.fn( (accum, n, index) => accum + n)
         const arrayData = [1, 2, 3]
@@ -110,6 +110,7 @@ describe('It correctly implements array methods with using built-ins', () => {
         const mockedFindIndex = newF.newFindIndex(arrayData, mockedFunc)
         const mockedEvery = newF.newEvery(arrayData, mockedFunc)
         const mockedForEach = newF.newForEach(arrayData, mockedFunc)
+        
         const mockedReduce = newF.newReduce(arrayData, mockedReduceFunc)
 
         // called 13 times, 3 per non-reduce function, 1 for filter.
