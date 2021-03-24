@@ -5,7 +5,7 @@ const newMap = (arr, callback) => {
 
     while (index < arr.length){
         if (arr.hasOwnProperty(index)){
-            newArr[index] = (callback(arr[index]))
+            newArr[index] = (callback(arr[index], index))
         } 
         else{delete newArr[index]}
         index++;
@@ -20,7 +20,7 @@ const newFilter = (arr, callback) => {
     let index = 0;
 
     while (index < arr.length){
-        if (arr.hasOwnProperty(index) && callback(arr[index])){
+        if (arr.hasOwnProperty(index) && callback(arr[index], index)){
             newArr[newArrIndex] = arr[index]
             newArrIndex++
         }
@@ -34,7 +34,7 @@ const newFindIndex = (arr, callback) => {
     let index = 0;
     for (let x = 0; x < arr.length; x++){
         if (arr.hasOwnProperty(x)) {
-            if (callback(arr[x])) {
+            if (callback(arr[x], index)) {
                 return x
             }
         }
@@ -51,7 +51,7 @@ const newReduce = (arr, callback, accVal) => {
 
     for (let x = startindex; x < arr.length; x++){
         if (arr.hasOwnProperty(x)){
-            acc = callback(acc, arr[x])
+            acc = callback(acc, arr[x], startindex)
         }
     }
 
@@ -62,7 +62,7 @@ const newReduce = (arr, callback, accVal) => {
 const newEvery = (arr, callback) => {
     for (let x = 0; x < arr.length; x++){
         if (arr.hasOwnProperty(x)){
-            if (!callback(arr[x])){
+            if (!callback(arr[x], x)){
                 return false
             }
         }
@@ -73,11 +73,10 @@ const newEvery = (arr, callback) => {
 const newForEach = (arr, callback) => {
     for (let x = 0; x < arr.length; x++){
         if (arr.hasOwnProperty(x)){
-            callback(arr[x])
+            callback(arr[x], x)
         }
     }    
 }
-
 
 
 module.exports = {
